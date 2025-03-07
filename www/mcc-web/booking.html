@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"> <!-- WAMP Live Fix -->
+    <title>Mega City Cabs - Booking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Mega City Cabs</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="trips.html">Rides</a></li>
+                <li><a href="login.html" class="btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="booking-container">
+        <h2>Book Your Ride</h2>
+        <form action="submit_booking.php" method="post" class="booking-form">
+            <div class="row">
+                <div class="column">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+        
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+        
+                    <label for="pickup">Pickup Location:</label>
+                    <input type="text" id="pickup" name="pickup" required>
+        
+                    <label for="destination">Destination:</label>
+                    <input type="text" id="destination" name="destination" required>
+        
+                    <label for="date">Pickup Date & Time:</label>
+                    <input type="datetime-local" id="date" name="date" required>
+                </div>
+
+                <div class="column">
+                    <div class="type-nav">
+                        <input type="radio" id="mini" name="car-type" value="mini" required hidden>
+                        <button type="button" onclick="prevItem()">&#9664;</button>
+                        <label for="car-type" id="type-label"></label>
+                        <button type="button" onclick="nextItem()">&#9654;</button>
+                    </div>
+
+                    <div class="menu-container">
+                        <div class="menu-display">
+                        </div>
+                        <p id="menu-description"></p>
+                    </div>
+                </div>
+              </div>
+
+
+            <button type="submit" class="btn">Confirm Booking</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Mega City Cab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentItem = 0;
+        let miniPrice = 5;
+        let standardPrice = 10;
+        let suvPrice = 20;
+        const items = [
+            { src: "./assets/mini.png", description: "Seats: 4" +  "\n" + "Cost: " + miniPrice + "/km", title: "Mini", value: "mini" },
+            { src: "./assets/car.png", description: "Seats: 5" +  "\n" + "Cost: " + standardPrice + "/km", title: "Standard", value: "standard" },
+            { src: "./assets/suv.png", description: "Seats: 6" +  "\n" + "Cost: " + suvPrice + "/km", title: "SUV", value: "suv" }
+        ];
+
+        function updateMenu() {
+            document.querySelector(".menu-display").style.backgroundImage = `url(${items[currentItem].src})`;
+            document.getElementById("menu-description").innerText = items[currentItem].description;
+            document.getElementById("type-label").textContent = items[currentItem].title;
+            document.getElementById("type-label").value = items[currentItem].value;
+        }
+
+        function nextItem() {
+            currentItem = (currentItem + 1) % items.length;
+            updateMenu();
+        }
+
+        function prevItem() {
+            currentItem = (currentItem - 1 + items.length) % items.length;
+            updateMenu();
+        }
+
+        document.addEventListener("DOMContentLoaded", updateMenu())
+    </script>
+
+</body>
+</html>

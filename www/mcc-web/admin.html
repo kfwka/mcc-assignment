@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"> <!-- WAMP Live Fix -->
+    <title>Mega City Cabs - D</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Mega City Cabs</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="trips.html">Trips</a></li>
+                <li><a href="login.html" class="btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="dashboard-container">   
+        <div class="stats-container">
+            <div class="stat-box">
+                <h3>Total Drivers</h3>
+                <p id="total-drivers"></p>
+            </div>
+            <div class="stat-box">
+                <h3>Total Customers</h3>
+                <p id="total-customers"></p>
+            </div>
+            <div class="stat-box">
+                <h3>Total Completed Trips</h3>
+                <p id="total-trips"></p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="avgDriverRatingsChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="carTypesChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Test Data as demo
+            const totalDrivers = 120;
+            const totalCustomers = 850;
+            const totalTrips = 5000;
+            
+            document.getElementById("total-drivers").textContent = totalDrivers;
+            document.getElementById("total-customers").textContent = totalCustomers;
+            document.getElementById("total-trips").textContent = totalTrips;
+
+            // Charts
+            const avgDriverRatings= document.getElementById("avgDriverRatingsChart").getContext("2d");
+            new Chart(avgDriverRatings, {
+                type: "line",
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                    datasets: [{
+                        label: "Average Driver Rating",
+                        data: [4.2, 4.3, 4.5, 4.6, 4.4, 4.7],
+                        borderColor: "rgba(54, 162, 235, 1)",
+                        backgroundColor: "rgba(54, 162, 235, 0.2)",
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            const carTypes = document.getElementById("carTypesChart").getContext("2d");
+            new Chart(carTypes, {
+                type: "pie",
+                data: {
+                    labels: ["Mini", "Sedan", "SUV"],
+                    datasets: [{
+                        label: "Car Type Distribution",
+                        data: [30, 50, 20],
+                        backgroundColor: ["#ff6384", "#36a2eb", "#ffce56"]
+                    }]
+                }
+            });
+        });
+    </script>
+</body>
+</html>

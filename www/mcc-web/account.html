@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"> <!-- WAMP Live Fix -->
+    <title>Mega City Cabs - Account</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Mega City Cabs</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="trips.html">Rides</a></li>
+                <li><a href="login.html" class="btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="account-container">
+        <h2>My Account</h2>
+        <div class="account-details">
+            <form id="update-account-form">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" value="John Doe" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="john@example.com" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" value="+1234567890" required>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="123 Main St, City" required>
+
+                <section id="driver-details" style="display: none;">
+                    <h2>Driver Details</h2>
+                    <label for="driver-id">Driver ID</label>
+                    <input type="text" id="driver-id" name="driver-id" value="D12345" readonly>
+
+                    <label for="vehicle-model">Vehicle Model</label>
+                    <input type="text" id="vehicle-model" name="vehicle-model" value="Toyota Prius" required>
+
+                    <label for="vehicle-type">Vehicle Type</label>
+                    <input type="text" id="vehicle-type" name="vehicle-type" value="Standard" required>
+
+                    <label for="registration-number">Registration Number</label>
+                    <input type="text" id="registration-number" name="registration-number" value="XYZ-1234" required>
+                </section>
+
+                <button type="submit" class="btn">Update Details</button>
+            </form>
+        </div>
+    </div>
+
+    <section id="booking-history" class="history">
+        <h2>Booking History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Pickup Location</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1001</td>
+                    <td>2025-03-01</td>
+                    <td>Main Street</td>
+                    <td>5th Avenue</td>
+                    <td>$15</td>
+                    <td id="rating-1001"><button class="rate-btn" onclick="openRatingModal(1001)">Rate</button></td>
+                </tr>
+                <tr>
+                    <td>1002</td>
+                    <td>2025-03-02</td>
+                    <td>Central Park</td>
+                    <td>Times Square</td>
+                    <td>$20</td>
+                    <td id="rating-1002"><button class="rate-btn" onclick="openRatingModal(1002)">Rate</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="trip-history" class="history">
+        <h2>Trip History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Trip #</th>
+                    <th>Date</th>
+                    <th>Pickup Location</th>
+                    <th>Destination</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2001</td>
+                    <td>2025-02-18</td>
+                    <td>City Center</td>
+                    <td>Downtown</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>2002</td>
+                    <td>2025-02-21</td>
+                    <td>Suburb</td>
+                    <td>Train Station</td>
+                    <td>Ongoing</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div id="rating-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRatingModal()">&times;</span>
+            <h2>Rate Your Trip</h2>
+            <p>Trip ID: <span id="trip-id"></span></p>
+            <div class="star-rating">
+                <span class="star" onclick="rateTrip(1)">&#9733;</span>
+                <span class="star" onclick="rateTrip(2)">&#9733;</span>
+                <span class="star" onclick="rateTrip(3)">&#9733;</span>
+                <span class="star" onclick="rateTrip(4)">&#9733;</span>
+                <span class="star" onclick="rateTrip(5)">&#9733;</span>
+            </div>
+            <button onclick="submitRating()">Submit</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mega City Cab. All rights reserved.</p>
+    </footer>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const userType = "user"; // Change to "user" for customer accounts
+            const bookingHistory = document.getElementById("booking-history");
+            const tripHistory = document.getElementById("trip-history");
+            const driverDetails = document.getElementById("driver-details");
+
+            if (userType === "driver") {
+                bookingHistory.style.display = "none";
+                tripHistory.style.display = "block";
+                driverDetails.style.display = "block";
+            } else {
+                tripHistory.style.display = "none";
+                bookingHistory.style.display = "block";
+                driverDetails.style.display = "none";
+            }
+        });
+
+        let ratings = {};
+
+        function openRatingModal(tripId) {
+            document.getElementById("trip-id").innerText = tripId;
+            document.getElementById("rating-modal").style.display = "flex";
+        }
+
+        function closeRatingModal() {
+            document.getElementById("rating-modal").style.display = "none";
+        }
+
+        function rateTrip(stars) {
+            const starsElements = document.querySelectorAll(".star");
+            starsElements.forEach((star, index) => {
+                star.style.color = index < stars ? "gold" : "black";
+            });
+            document.getElementById("rating-modal").setAttribute("data-rating", stars);
+        }
+
+        function submitRating() {
+            const tripId = document.getElementById("trip-id").innerText;
+            const rating = document.getElementById("rating-modal").getAttribute("data-rating") || 0;
+            ratings[tripId] = rating;
+            document.getElementById(`rating-${tripId}`).innerHTML = `Rated: ${rating} &#9733;`;
+            closeRatingModal();
+        }
+    </script>
+
+</body>
+
+</html>
