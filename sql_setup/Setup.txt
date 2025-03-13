@@ -1,0 +1,85 @@
+CREATE TABLE Customers (
+    customerID INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    address VARCHAR(255),
+    phone VARCHAR(15) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    passwordHash VARCHAR(255) NOT NULL,
+    salt VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE Drivers (
+    driverID INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    driverLicenseID VARCHAR(50) UNIQUE NOT NULL,
+    phone VARCHAR(15) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    passwordHash VARCHAR(255) NOT NULL,
+    salt VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE Cars (
+    carID INT PRIMARY KEY AUTO_INCREMENT,
+    registrationNumber VARCHAR(20) UNIQUE NOT NULL,
+    model VARCHAR(100) NOT NULL,
+    type INT NOT NULL,
+    driverID INT,
+    FOREIGN KEY (driverID) REFERENCES Drivers(driverID)
+);
+
+CREATE TABLE Bookings (
+    bookingID INT PRIMARY KEY AUTO_INCREMENT,
+    customerID INT NOT NULL,
+    pickup VARCHAR(255) NOT NULL,
+    dropoff VARCHAR(255) NOT NULL,
+    bookingDateTime DATETIME NOT NULL,
+    bookingStatus ENUM('PendingNotAccepted', 'PendingAccepted', 'Completed', 'Cancelled') DEFAULT 'PendingNotAccepted',
+    assignedDriverID INT,
+    assignedCarID INT,
+    rating INT(1) CHECK (rating BETWEEN 1 AND 5),
+    FOREIGN KEY (customerID) REFERENCES Customers(customerID),
+    FOREIGN KEY (assignedDriverID) REFERENCES Drivers(driverID),
+    FOREIGN KEY (assignedCarID) REFERENCES Cars(carID)
+);
+
+CREATE TABLE Billing (
+    billID INT PRIMARY KEY AUTO_INCREMENT,
+    bookingID INT UNIQUE NOT NULL,
+    baseFare DECIMAL(10,2) NOT NULL,
+    distanceKm DECIMAL(10,2) NOT NULL,
+    ratePerKm DECIMAL(10,2) NOT NULL,
+    totalAmount DECIMAL(10,2) NOT NULL,
+    paymentStatus ENUM('Pending', 'Paid', 'Cancelled') DEFAULT 'Pending',
+    FOREIGN KEY (bookingID) REFERENCES Bookings(bookingID)
+);
+
+CREATE TABLE Admins (
+    userID INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    passwordHash VARCHAR(255) NOT NULL,
+    salt VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE AdminDashboardStats (
+    statID INT PRIMARY KEY AUTO_INCREMENT,
+    totalBookings INT DEFAULT 0,                  
+    completedBookings INT DEFAULT 0,              
+    cancelledBookings INT DEFAULT 0,              
+    pendingBookings INT DEFAULT 0,                
+    totalRevenue DECIMAL(10,2) DEFAULT 0.00,      
+    totalDrivers INT DEFAULT 0,                                    
+    totalCustomers INT DEFAULT 0,                 
+    totalCars INT DEFAULT 0,                                    
+    carTypeStandard INT DEFAULT 0,                   
+    carTypeSUV INT DEFAULT 0,                     
+    carTypeMini INT DEFAULT 0,          
+    totalTripDistance DECIMAL(20,1) DEFAULT 0, 
+    averageTripDistance DECIMAL(10,2) DEFAULT 0, 
+    averageFareAmount DECIMAL(10,2) DEFAULT 0,    
+    averageDriverRating DECIMAL(3,2) DEFAULT 0,
+    dateUpdated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
