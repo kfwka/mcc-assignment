@@ -1,0 +1,504 @@
+/* General Styles */
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+}
+
+header {
+    background: #222;
+    color: #fff;
+    padding: 0;
+    text-align: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #fdb813;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #fdb813;
+}
+
+.btn {
+    background-color: #fff;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #fdb813;
+}
+
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Home Styles */
+
+.hero {
+    background: url(assets/hero.png) center/cover no-repeat;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    transition: 0.25s;
+}
+
+.hero:hover {
+    background: url(assets/herof.png) center/cover no-repeat;
+    transition: 0.25s;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+}
+
+.hero p {
+    margin-bottom: 20px;
+}
+
+.services {
+    padding: 20px 40px 40px 40px;
+    text-align: center;
+}
+
+.service-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.service-box {
+    background: #fafafa;
+    margin: 0px 5px 0px 5px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Bookings & Trips Styling */
+
+.booking-container{
+    width: 800px;
+    margin: 10vh auto 20vh auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+.row {
+    display: flex;
+}
+  
+.column {
+    flex: 50%;
+}
+
+.booking-form {
+    flex-direction: column;
+}
+
+.booking-form label {
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.booking-form input {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+input[type=radio] {
+    opacity: 100;
+}
+
+.type-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px ;
+}
+
+.type-nav label {
+    transform: translateY(-5px);
+}
+
+.type-nav button {
+    border: none;
+    background-color: #fff;
+}
+
+.type-nav button:hover {
+    color: #fdb813;
+}
+
+.menu-display {
+    height: 290px;
+    background-image: url(./assets/mini.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.menu-description {
+    white-space: pre-line;
+}
+
+.car-option img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.car-option:has(input:checked) {
+    border: 2px solid #bbb;
+    border-radius: 5px;
+}
+
+.trip-container {
+    width: 550px;
+    margin: 10vh auto 20vh auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    align-items: flex-start;
+    overflow-y: auto;
+}
+
+.trip-box h2 {
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #bbb;
+    text-align: center;
+}
+
+th {
+    background-color: #fdb813;
+    color: white;
+}
+
+/* Authentication Styling */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10vh 0 20vh 0;
+    overflow-y: auto;
+}
+
+.auth-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+.auth-box h2 {
+    margin-bottom: 20px;
+}
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-box label {
+    text-align: left;
+    font-weight: bold;
+}
+
+.auth-box a {
+    color: #fdb813;
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+button.btn {
+    width: 100%;
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button.btn:hover {
+    background: #fdb813;
+}
+
+#driver-fields {
+    background: #fff;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 2px solid #fdb813;
+    text-align: left;
+}
+
+#driver-fields input {
+    width: 90%;
+}
+
+#driver-fields h3 {
+    margin-top: 0;
+}
+
+/* Account Styling */
+
+.account-container {
+    width: 500px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.account-container h2, .account-container section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.account-details form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.account-details label, .account-container section label {
+    font-weight: bold;
+}
+
+.account-details input, .account-container section input {
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.account-container section input {
+    width: 95%;
+}
+
+.history {
+    width: 80%;
+    margin: 30px auto 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.history h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.history table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history th, .history td {
+    padding: 12px;
+    border-bottom: 1px solid #bbb;
+    text-align: left;
+}
+
+.history th {
+    background-color: #fdb813;
+    color: #000;
+}
+
+.rate-btn, .modal-content button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.rate-btn:hover, .modal-content button:hover {
+    background-color: #fdb813;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.star {
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+    transition: color 0.3s;
+    padding-bottom: 20px;
+}
+
+.star:hover, .star.selected {
+    color: #fdb813;
+}
+
+/* Dashboard Styling */
+
+.dashboard-container {
+    width: 80%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: #fdb813;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 30%;
+}
+
+.stat-box h3 {
+    margin: 0;
+}
+
+.stat-box p {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.chart-container {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

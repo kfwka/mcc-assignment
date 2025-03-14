@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"> <!-- WAMP Live Fix -->
+    <title>Login & Register - Mega City Cab</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Mega City Cabs</a></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="trips.html">Trips</a></li>
+                <li><a href="login.html" class="btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="auth-container">
+        <div class="auth-box">
+            
+            <div id="login-container">
+                <h2 class="form-title">Login</h2>
+                <form id="login-form" action="http://localhost:8088/login" method="post">
+                    <label for="user-type">Login as:</label>
+                    <select id="user-type" name="user-type" required>
+                        <option value="customer">Customer</option>
+                        <option value="driver">Driver</option>
+                    </select>
+                    
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <button type="submit" class="btn">Login</button>
+                    <p>Don't have an account? <a href="#" onclick="toggleForms()">Register</a></p>
+                </form>
+            </div>
+
+            <div id="register-container" class="hidden">
+                <h2 class="form-title">Register</h2>
+                
+                <form id="register-form" action="" method="post">
+                    <label for="reg-user-type">Register as:</label>
+                    <select id="reg-user-type" name="reg-user-type" onchange="toggleDriverFields()" required>
+                        <option value="customer">Customer</option>
+                        <option value="driver">Driver</option>
+                    </select>
+    
+                    <label for="reg-name">Full Name:</label>
+                    <input type="text" id="reg-name" name="name" required>
+    
+                    <label for="reg-username">Username:</label>
+                    <input type="text" id="reg-username" name="username" required>
+    
+                    <label for="reg-email">Email:</label>
+                    <input type="email" id="reg-email" name="email" required>
+    
+                    <label for="reg-phone">Phone Number:</label>
+                    <input type="tel" id="reg-phone" name="phone" required>
+    
+                    <label for="reg-password">Password:</label>
+                    <input type="password" id="reg-password" name="password" required>
+
+                    <label for="reg-password">Confirm Password:</label>
+                    <input type="password" id="reg-confirmpassword" name="confirmpassword" required>
+                    
+                    <div id="driver-fields" class="hidden">
+                        <h3>Driver Details</h3>
+                        <label for="vehicle-model">Vehicle Model:</label>
+                        <input type="text" id="vehicle-model" name="vehicle-model">
+    
+                        <label for="vehicle-type">Vehicle Type:</label>
+                        <select id="vehicle-type" name="vehicle-type">
+                            <option value="Mini">Mini</option>
+                            <option value="Standard">Standard</option>
+                            <option value="SUV">SUV</option>
+                        </select>
+    
+                        <label for="vehicle-registration">Vehicle Registration Number:</label>
+                        <input type="text" id="vehicle-registration" name="vehicle-registration">
+    
+                        <label for="driver-id">Driver ID:</label>
+                        <input type="text" id="driver-id" name="driver-id">
+                    </div>
+    
+                    <button type="submit" class="btn">Register</button>
+                    <p>Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
+                </form>
+            </div>
+
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Mega City Cab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleForms() {
+            document.getElementById('login-container').classList.toggle('hidden');
+            document.getElementById('register-container').classList.toggle('hidden');
+        }
+
+        function toggleDriverFields() {
+            var userType = document.getElementById('reg-user-type').value;
+            var driverFields = document.getElementById('driver-fields');
+            if (userType === 'driver') {
+                driverFields.classList.remove('hidden');
+            } else {
+                driverFields.classList.add('hidden');
+            }
+        }
+    </script>
+
+</body>
+</html>
+
