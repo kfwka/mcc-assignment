@@ -24,6 +24,7 @@ public class DuplicateCheckerService {
         statement.setString(1, value);
         ResultSet result = statement.executeQuery();
 
+        connection.close();
         return result.next();
     }
 }

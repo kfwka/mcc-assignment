@@ -139,18 +139,27 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Mega City Cab. All rights reserved.</p>
+        <p id="test">&copy; 2025 Mega City Cab. All rights reserved.</p>
     </footer>
 
     <script>
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                let [key, value] = cookie.split('=');
+                if (key === name) return value;
+            }
+            return 'Unknown';
+        }
 
         document.addEventListener("DOMContentLoaded", function () {
-            const userType = "user"; // Change to "user" for customer accounts
+            const userType = getCookie("username"); // Change to "user" for customer accounts
+            document.getElementById("test").innerHTML = document.cookie;
             const bookingHistory = document.getElementById("booking-history");
             const tripHistory = document.getElementById("trip-history");
             const driverDetails = document.getElementById("driver-details");
 
-            if (userType === "driver") {
+            if (userType == "driver") {
                 bookingHistory.style.display = "none";
                 tripHistory.style.display = "block";
                 driverDetails.style.display = "block";
