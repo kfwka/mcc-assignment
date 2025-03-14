@@ -1,5 +1,6 @@
 package database.services;
 
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
@@ -28,6 +29,10 @@ public class HashingService {
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         return salt;
+    }
+
+    public static byte[] convertSalt(String salt) {
+        return Base64.getDecoder().decode(salt);
     }
 }
 
